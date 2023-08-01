@@ -39,6 +39,4 @@ Always remember that you can add new types of scores and metrics to meet all the
 
 ## Documentation
 
-Please, feel invited to familiarize yourself with the complete
-
-[https://www.notion.so/rektinteractive/REKTMode-developer-documentation-f66f478ca1d7461b8a1250378cdb7aac](documentation)
+Please, feel invited to familiarize yourself with the complete [documentation](https://www.notion.so/rektinteractive/REKTMode-developer-documentation-f66f478ca1d7461b8a1250378cdb7aac)
