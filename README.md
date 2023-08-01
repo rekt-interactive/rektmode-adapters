@@ -36,3 +36,9 @@ This module implemets 4 methods:
 This code is sufficient to fully integrate a multiplayer PvP game with Rektmode.
 
 Always remember that you can add new types of scores and metrics to meet all the needs and nuances of your game. Flexibility and customization are essential to providing a great gaming experience. If you need any assistance in implementing new features or have any questions, feel free to reach out for help. Happy gaming!
+
+## Documentation
+
+Please, feel invited to familiarize yourself with the complete
+
+[https://www.notion.so/rektinteractive/REKTMode-developer-documentation-f66f478ca1d7461b8a1250378cdb7aac](documentation)
