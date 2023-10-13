@@ -31,7 +31,7 @@ function RektModeApi:SubmitScores(scores)
 	print('rektmode scores: ', scores)
 	
 	local response = HttpService:RequestAsync({
-		Url = ENVS[ENV].BASE_URL..'/developer/games/scores', -- This website helps debug HTTP requests
+		Url = ENVS[ENV].BASE_URL..'/v1/scores', -- This website helps debug HTTP requests
 		Method = "POST",
 		Headers = {
 			["Content-Type"] = "application/json",

@@ -44,8 +44,11 @@ function RektModeManager:ProcessTimePlayed(state)
 					},
 					score = {
 						id = "5fd68f44-e8cd-4429-a90a-51157ea22d35",
-						data = {
-							hours = timePlayedInterval/60/60
+						attributes = {
+							{
+								key = 'hours',
+								value = timePlayedInterval/60/60
+							}
 						}
 					}
 				}
@@ -74,7 +77,7 @@ function RektModeManager:ProcessMatchScores()
 	if not inited then return end
 	
 
-	local timePlayedScores = {}
+	local matchScores = {}
 	
 	local sortedPlayers = {}
 	
@@ -86,33 +89,48 @@ function RektModeManager:ProcessMatchScores()
 
 	for i, player in pairs(sortedPlayers) do
 
-		local playerTimePlayedScore = {
+		local playerMatchScore = {
 			user = {
 				provider = 'roblox',
 				id = player.UserId
 			},
 			score = {
 				id = "7e67ab4c-68b5-4650-9f45-1ef0a258446f",
-				data = {
+				attributes = {
 					--match_id = MatchMakingMatch.CurrentMatch.matchId,
-					duration = (os.time() - MatchMakingMatch.CurrentMatch.createDate)/60/60,
-					place = i,
-					score = player.Scores.RoundScores.Value
+					{ 
+						key = "duration",
+						value = (os.time() - MatchMakingMatch.CurrentMatch.createDate)/60/60
+					},
+					{ 
+						key = "place",
+						value = i
+					},
+					{
+						key = "score",
+						value = player.Scores.RoundScores.Value
+					}
 				}
 			}
 		}
 		
 		if i == 1  then
-			
-			playerTimePlayedScore.score.data.win = true
+
+			table.insert(
+				playerMatchScore.score.attributes,
+				{
+					key = "win",
+					value = true
+				}
+			)
 			
 		end
 
-		table.insert(timePlayedScores, playerTimePlayedScore)
+		table.insert(matchScores, playerMatchScore)
 
 	end
 
-	RektModeApi:SubmitScores(timePlayedScores)
+	RektModeApi:SubmitScores(matchScores)
 	
 end
 
@@ -162,12 +180,27 @@ function RektModeManager:ProcessRoundScores()
 			},
 			score = {
 				id = "bb078150-b1af-4a04-9991-407cfadaf3d6",
-				data = {
-					duration = (os.time() - MatchManager.LastRoundStartTime)/60/60,
-					scores = player.Scores.LastRoundScores.Value,
-					victim_kills = victim_kills,
-					victim_survivals = victim_survivals,
-					victim_escapes = victim_escapes				
+				attributes = {
+					{
+						key = "duration",
+						value = (os.time() - MatchManager.LastRoundStartTime)/60/60
+					},
+					{
+						key = "scores",
+						value = player.Scores.LastRoundScores.Value
+					},
+					{
+						key = "victim_kills",
+						value = victim_kills
+					},
+					{
+						key = "victim_survivals",
+						value = victim_survivals
+					},
+					{
+						key = "victim_escapes",
+						value = victim_escapes
+					}
 				}
 			}
 		}
